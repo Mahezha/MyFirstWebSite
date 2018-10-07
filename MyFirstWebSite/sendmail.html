@@ -1,0 +1,119 @@
+<html>
+    <head>
+        <style>
+            body{
+                padding: 2%;
+                background-color: antiquewhite;
+            }
+            #address{
+                height: 100px;
+            }
+            #description{
+                width: 250px;
+                height: 100px;
+            }
+            #send:hover{
+                background-color: coral;
+            }
+            span{
+                color: red;
+            }
+        </style>
+        
+        <script>
+            function validate() {
+                
+                   
+                var date = document.forms["myForm"]["date"].value;
+                var name = document.forms["myForm"]["fname"].value;
+                var phone = document.forms["myForm"]["contact"].value;
+                var email = document.forms["myForm"]["email"].value;
+                var description = document.forms["myForm"]["description"].value;
+    
+                if (date == "" || name == "" || phone == "" || email == "" || description == "") {
+                    alert("Please fill all the required fields.");
+                    return false;
+                }
+                var i,
+                chks = document.getElementsByName('service[]');
+                if(validateEmail()==0)
+                    {
+                        alert("Invalid email");
+                        return false;
+                    }
+                
+                for (i = 0; i < chks.length; i++)
+                    {
+                       if (chks[i].checked)
+                        {
+                           alert("Thanks for making an appointment! We will send you a reply email soon...");
+                            return true;     
+                        }
+                           
+                    }
+                
+                 alert("Please fill all the required fields.");   
+                 return false;   
+            }
+            
+            function validateEmail()
+            {
+                var p = document.forms["myForm"]["email"].value;
+                var re = /\S+@\S+/;
+                return re.test(p);
+            }
+            
+            /*function myfunction()
+            {
+                document.getElementById("myForm").action = "welcome.php";
+                document.getElementById("demo").innerHTML = "The value of the action attribute was changed to welcome.php.";
+            }*/
+        </script>
+    </head>
+    
+    <body>
+        
+        <h1>-Send Your appointment-</h1>
+        <form action="" method="post" onsubmit="validate()" name="myForm" id="myForm">
+            Type of service<span>*</span>:<br>
+            <input type="checkbox" name="service[]" value="bride">Bridal dressing<br>
+            <input type="checkbox" name="service[]" value="hair">Hair<br>
+            <input type="checkbox" name="service[]" value="facial">Facial<br>
+            <input type="checkbox" name="service[]" value="eye">Eyebrow<br><br>
+            
+            <table>
+                <tr>
+                    <td>Date you want<span>*</span>:</td>
+                    <td><input type="text" name="date" id="date" placeholder="mm//dd//yyyy"></td>
+                </tr>
+                <tr>
+                    <td>First name<span>*</span>:</td>
+                    <td><input type="text" name="fname" id="fname"></td>
+                </tr>
+                <tr>
+                    <td>Last name:</td>
+                    <td><input type="text" name="lname"></td>
+                </tr>
+                <tr>
+                    <td>Address:</td>
+                    <td><textarea name="address" id="address">Your address here</textarea></td>
+                </tr>
+                <tr>
+                    <td>Contact No<span>*</span>:</td>
+                    <td><input type="text" name="contact" id="contact"></td>
+                </tr>
+                <tr>
+                    <td>Email<span>*</span>:</td>
+                    <td><input type="text" name="email" id="email" placeholder="abc@def.com"></td>
+                </tr>
+            </table>
+            <br>
+            Small description about the service you need<span>*</span>:<br>
+            <textarea name="description" id="description" placeholder="Write your description here"></textarea><br><br>
+            
+            <input type="submit" name="submit" value="Send mail" id="send">
+        </form>
+        
+        <p id="demo"></p>
+    </body>
+</html>
