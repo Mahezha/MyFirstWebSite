@@ -1,1 +1,1 @@
-# This web site for a salon.
+# This web site is for a salon.
